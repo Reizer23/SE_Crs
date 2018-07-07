@@ -1,0 +1,64 @@
+
+
+************** Using CSS ************
+
+“#” -­‐> Id
+“.” -­‐> Class
+“^” -­‐> Represents the starting text
+“$” -­‐> Represents the ending text
+“*” -­‐> Represents the text contained
+
+//14-79
+<input id="displayed-text" name="show-hide" class="inputs displayed-class" placeholder="Hide/Show Example"
+type="text" style="" css="1">
+
+input#displayed-text
+input[id='name'][class='inputs']    This will use to parameters, id & class
+
+****** CSS examples *******
+<input id="displayed-text" name="show-hide" class="inputs displayed-class" placeholder="Hide/Show Example"
+type="text" style="" css="1">
+
+input[class='inputs displayed-class']
+.displayed-class
+input.displayed-class
+.inputs.displayed-class
+input.inputs.displayed-class
+
+******** Example with 2 attributes ********
+<button id="openwindow" class="btn-style class1" onclick="openWindow()" style="" css="1">Open Window</button>
+
+By CSS - we write 2 attributes "id" and "class" the order doesn't matter, but should be write toguether
+#openwindow.btn-style.class1.btn-style.class1
+
+***********   14-80   Special characters  "^" "$" "*"   *************
+1st Character "^"
+<input id="name" name="enter-name" class="inputs" placeholder="Enter Your Name" type="text" css="1">
+
+input[class='inputs']
+If we use the 1st character "^" we are trying to find the value of the class which start with "inputs"
+in this case it will find 2 results
+input[class^='inputs']
+
+2nd Character "$" we are trying to find the value of the class which ends with "class"
+<input id="displayed-text" name="show-hide" class="inputs displayed-class" placeholder="Hide/Show Example"
+type="text" style="" css="1">
+input[class$='class']
+
+3rd Character "*"
+<input id="displayed-text" name="show-hide" class="inputs displayed-class" placeholder="Hide/Show Example"
+type="text" style="" css="1">
+input[class*='displayed-class']
+
+**********  14-81  Using Childs  *****************
+<table id="product" name="courses" class="table-display" border="1" style="" css="1">
+
+fieldset>table        1st tag - fieldset  2nd tag - table, table is child of fieldset
+fieldset>#product     can use tag with some other attribute as "id"
+
+<fieldset css="1">
+<input id="show-textbox" class="btn-style class2" value="Show" onclick="showElement()" type="submit" css="1">
+<input id="show-textbox" class="btn-style class2" value="Show" onclick="showElement()" type="submit" css="1">
+
+To get unique object, we need to combine more than 1 property, on this case i will use tag "input" and "id"
+fieldset>input#show-textbox
