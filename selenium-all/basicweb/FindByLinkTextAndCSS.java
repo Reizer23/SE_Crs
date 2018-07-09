@@ -1,4 +1,4 @@
-package seleniumtuto;
+package basicweb;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

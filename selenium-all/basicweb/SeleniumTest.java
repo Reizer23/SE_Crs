@@ -1,4 +1,4 @@
-package seleniumtuto;
+package basicweb;
 
 import org.junit.After;
 import org.junit.Before;
@@ -19,6 +19,7 @@ public class SeleniumTest {
     {
         driver = new ChromeDriver();
         baseUrl = "http://www.letskodeit.com/";
+        driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
 
@@ -26,7 +27,7 @@ public class SeleniumTest {
     public void testSelenium() throws Exception
     {
         driver.get(baseUrl + "/");
-        driver.findElement(By.id("i90scv3glabel")).click();
+        //driver.findElement(By.id("i90scv3glabel")).click();
         driver.findElement(By.linkText("Practice")).click();
     }
 

@@ -19,7 +19,7 @@
           preserve-order="true">
         <packages>
             <package
-                    name="seleniumtuto.*"/>
+                    name="basicweb.*"/>
         </packages>
     </test>
 
