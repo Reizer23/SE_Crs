@@ -1,0 +1,2 @@
+Assert is used to know if the element is displayed or others, but if failes the Test ENDS
+Verify is used to know if the element is displayed or others, but if failes the Test CONTINUES
