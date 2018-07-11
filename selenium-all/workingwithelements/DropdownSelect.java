@@ -9,6 +9,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class DropdownSelect {
@@ -44,6 +45,15 @@ public class DropdownSelect {
 
         Thread.sleep(2000);
         System.out.println("Print the list of all options");
+
+        //Print Car list
+        List<WebElement> options = sel.getOptions();
+        int size = options.size();
+
+        for(int i=0; i<size; i++){
+            String optionName = options.get(i).getText();
+            System.out.println(optionName);
+        }
     }
 
     @After
