@@ -13,14 +13,14 @@ import java.util.concurrent.TimeUnit;
 public class ElementListDemo {
     WebDriver driver;
     String baseUrl;
-    private GenericMethods gm;
+    private GenericMethodsOld gm;
 
     @Before
     public void setUp() throws Exception
     {
         driver = new ChromeDriver();
         baseUrl = "http://letskodeit.teachable.com/p/practice";
-        gm = new GenericMethods(driver);
+        gm = new GenericMethodsOld(driver);
 
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().window().maximize();
