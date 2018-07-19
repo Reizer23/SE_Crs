@@ -107,6 +107,8 @@
             <artifactId>log4j-core</artifactId>
             <version>2.11.0</version>
         </dependency>
+
+        <!-- RelevantCodes for Extent Reports moved it to Aventstack-->
         <!-- https://mvnrepository.com/artifact/com.aventstack/extentreports -->
         <dependency>
             <groupId>com.aventstack</groupId>
@@ -114,6 +116,7 @@
             <version>3.1.5</version>
             <scope>provided</scope>
         </dependency>
+
         <!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
         <dependency>
             <groupId>org.apache.poi</groupId>
@@ -150,4 +153,5 @@
             <artifactId>extentreports</artifactId>
             <version>2.41.2</version>
         </dependency>
+
         -->
