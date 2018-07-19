@@ -14,8 +14,7 @@ public class ImplicitWaitDemo {
     String baseUrl;
 
     @Before
-    public void setUp() throws Exception
-    {
+    public void setUp() throws Exception {
         driver = new ChromeDriver();
         baseUrl = "http://letskodeit.teachable.com/pages/practice";
         driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
@@ -23,16 +22,14 @@ public class ImplicitWaitDemo {
     }
 
     @Test
-    public void test()
-    {
+    public void test() {
         driver.get(baseUrl);
         driver.findElement(By.linkText("Login")).click();
         driver.findElement(By.cssSelector("#user_email"));
     }
 
     @After
-    public void tearDown() throws Exception
-    {
+    public void tearDown() throws Exception {
         Thread.sleep(2000);
         driver.quit();
     }

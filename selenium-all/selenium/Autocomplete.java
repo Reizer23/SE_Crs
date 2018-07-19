@@ -22,7 +22,7 @@ public class Autocomplete {
     @FindBy(css = "ul#air-city-departure-menu")
     WebElement citys;
 
-    @FindBy(tagName = "li")
+    @FindBy(tagName = "li") //Modificar este TagName
     List<WebElement> results;
 
     @BeforeMethod
@@ -43,8 +43,6 @@ public class Autocomplete {
         String partialText = "New York";
 
         departInput.sendKeys(partialText);
-
-        //results = citys;
 
         int size = results.size();
 

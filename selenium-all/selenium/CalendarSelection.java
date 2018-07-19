@@ -1,11 +1,12 @@
 package selenium;
 //20-120
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -16,6 +17,7 @@ import java.util.concurrent.TimeUnit;
 public class CalendarSelection {
     WebDriver driver;
     String baseUrl;
+    WebDriverWait wait;
 
     @FindBy(css="button#tab-flight-tab-hp")
     WebElement tabFlight;
@@ -26,25 +28,21 @@ public class CalendarSelection {
     @FindBy(xpath="//button[@data-month='6'][@data-day='31']")
     WebElement dateToSelect;
 
-    @FindBy(xpath="//div[@class='datepicker-cal-month'][1]//tbody")
-    WebElement calMonth;
-
-    @FindBy(tagName = "td")
+    @FindBy(css = "td>button")
     List<WebElement> allValidDates;
 
     @BeforeMethod
-    public void setUp() throws Exception
-    {
+    public void setUp() throws Exception {
         driver = new ChromeDriver();
         PageFactory.initElements(driver, this);
+        wait = new WebDriverWait(driver, 7);
         baseUrl = "http://www.expedia.com/";
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.manage().window().maximize();
     }
 
     @Test(enabled = false)
-    public void selectingFlightDay1() throws InterruptedException
-    {
+    public void selectingFlightDay1() throws InterruptedException {
         driver.get(baseUrl);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         tabFlight.click();
@@ -55,21 +53,15 @@ public class CalendarSelection {
 
     //20-121
     @Test(enabled = true)
-    public void selectingFlightDay2() throws InterruptedException
-    {
+    public void selectingFlightDay2() throws InterruptedException {
         driver.get(baseUrl);
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         tabFlight.click();
         departingField.click();
 
-        validateTittle("31");
-        System.out.println("********************************");
-
-        for(WebElement date : allValidDates)
-        {
-            System.out.println(date.getText());
-            if(date.getText().equals("31"))
-            {
+        for(WebElement date : allValidDates) {
+            if(date.getText().trim().equals("31")){
+                wait.until(ExpectedConditions.elementToBeClickable(date));
                 date.click();
                 break;
             }
@@ -77,21 +69,8 @@ public class CalendarSelection {
         System.out.println("Test 2");
     }
 
-    public boolean validateTittle(String aTittle) {
-        boolean flag = false;
-        for(WebElement t : allValidDates) {
-            System.out.println(t.getText());
-            if(t.getText().trim().equals(aTittle)) {
-                flag=true;
-                break;
-            }
-        }
-        return flag;
-    }
-
     @AfterClass
-    public void tearDown() throws Exception
-    {
+    public void tearDown() throws Exception {
         Thread.sleep(2000);
         driver.quit();
     }
