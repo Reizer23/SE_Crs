@@ -1,5 +1,5 @@
 package javascriptexecution;
-
+//21-125
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,13 +12,13 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class JavaScriptExecution {
+public class ScrollingElementIntoView {
     WebDriver driver;
     String baseUrl;
     private JavascriptExecutor js;
 
-    @FindBy(css = "#name")
-    WebElement textBox;
+    @FindBy(css = "#mousehover")
+    WebElement element;
 
     @BeforeMethod
     public void setUp() throws Exception {
@@ -31,14 +31,19 @@ public class JavaScriptExecution {
     }
 
     @Test
-    public void testJavaScriptExecution(){
-        //driver.get(baseUrl);
-        //JS will open the url
-        //textBox.sendKeys("test");
-
+    public void testJavaScriptExecution() throws InterruptedException {
         js.executeScript("window.location = 'http://letskodeit.teachable.com/pages/practice'");
-        textBox = (WebElement) js.executeScript("return document.getElementById('name');");
-        textBox.sendKeys("test");
+
+        //Scroll Down
+        js.executeScript("window.scrollBy(0, 1900);");
+        Thread.sleep(2000);
+        //Scroll Up
+        js.executeScript("window.scrollBy(0, -1900);");
+        Thread.sleep(2000);
+        //Scroll Element Into View
+        js.executeScript("arguments[0].scrollIntoView(true);", element);
+        Thread.sleep(2000);
+        js.executeScript("window.scrollBy(0, -190);");
     }
 
 

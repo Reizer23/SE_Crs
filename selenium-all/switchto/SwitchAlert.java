@@ -1,6 +1,6 @@
-package javascriptexecution;
-
-import org.openqa.selenium.JavascriptExecutor;
+package switchto;
+//21-132
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -12,35 +12,47 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class JavaScriptExecution {
+public class SwitchAlert {
     WebDriver driver;
     String baseUrl;
-    private JavascriptExecutor js;
 
     @FindBy(css = "#name")
-    WebElement textBox;
+    WebElement nameInput;
+
+    @FindBy(css = "#alertbtn")
+    WebElement alertBtn;
+
+    @FindBy(css = "#confirmbtn")
+    WebElement confirmBtn;
 
     @BeforeMethod
     public void setUp() throws Exception {
         driver = new ChromeDriver();
         PageFactory.initElements(driver, this);
         baseUrl = "http://letskodeit.teachable.com/pages/practice";
-        js = (JavascriptExecutor) driver;
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.get(baseUrl);
     }
 
     @Test
-    public void testJavaScriptExecution(){
-        //driver.get(baseUrl);
-        //JS will open the url
-        //textBox.sendKeys("test");
-
-        js.executeScript("window.location = 'http://letskodeit.teachable.com/pages/practice'");
-        textBox = (WebElement) js.executeScript("return document.getElementById('name');");
-        textBox.sendKeys("test");
+    public void test1(){
+       nameInput.sendKeys("Ulises");
+       alertBtn.click();
+       driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        /** Not every pop-up is a java script Alert, but if it is, you must use this kind of Alert */
+       Alert alert = driver.switchTo().alert();
+       alert.accept();
     }
 
+    @Test
+    public void test2(){
+        nameInput.sendKeys("Ulises");
+        confirmBtn.click();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        Alert alert = driver.switchTo().alert();
+        alert.accept();
+    }
 
     @AfterClass
     public void tearDown() throws Exception {

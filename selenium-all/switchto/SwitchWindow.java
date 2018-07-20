@@ -1,5 +1,5 @@
-package javascriptexecution;
-
+package switchto;
+//21-129
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -10,37 +10,56 @@ import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-public class JavaScriptExecution {
+public class SwitchWindow {
     WebDriver driver;
     String baseUrl;
     private JavascriptExecutor js;
 
+    @FindBy(css = "#openwindow")
+    WebElement openWindow;
+
+    @FindBy(css = "#search-courses")
+    WebElement searchBox;
+
     @FindBy(css = "#name")
-    WebElement textBox;
+    WebElement nameInput;
 
     @BeforeMethod
     public void setUp() throws Exception {
         driver = new ChromeDriver();
         PageFactory.initElements(driver, this);
         baseUrl = "http://letskodeit.teachable.com/pages/practice";
-        js = (JavascriptExecutor) driver;
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        driver.get(baseUrl);
     }
 
     @Test
-    public void testJavaScriptExecution(){
-        //driver.get(baseUrl);
-        //JS will open the url
-        //textBox.sendKeys("test");
+    public void testJavaScriptExecution() throws InterruptedException {
 
-        js.executeScript("window.location = 'http://letskodeit.teachable.com/pages/practice'");
-        textBox = (WebElement) js.executeScript("return document.getElementById('name');");
-        textBox.sendKeys("test");
+        //Get the gandle window
+        String parentHandle = driver.getWindowHandle();
+        openWindow.click();
+
+        //Get all handles
+        Set<String> handles = driver.getWindowHandles();
+
+        //Switching between handles
+        for(String handle : handles){
+            if(!handle.equals(parentHandle)){
+                driver.switchTo().window(handle);
+                searchBox.sendKeys("python");
+                Thread.sleep(2000);
+                driver.close();
+                break;
+            }
+        }
+        driver.switchTo().window(parentHandle);
+        nameInput.sendKeys("Test Successful");
     }
-
 
     @AfterClass
     public void tearDown() throws Exception {

@@ -1,5 +1,6 @@
 package javascriptexecution;
-
+//21-125
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,13 +13,19 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class JavaScriptExecution {
+public class JavaScriptClick {
     WebDriver driver;
     String baseUrl;
     private JavascriptExecutor js;
 
-    @FindBy(css = "#name")
-    WebElement textBox;
+    @FindBy(css = "#bmwcheck")
+    WebElement checkBoxElement;
+
+    @FindBy(css = "#subscribe")
+    WebElement subscribe;
+
+    @FindBy(xpath = "//div[text()='Log In / Sign up']")
+    WebElement logIn;
 
     @BeforeMethod
     public void setUp() throws Exception {
@@ -30,17 +37,23 @@ public class JavaScriptExecution {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     }
 
-    @Test
+    @Test(enabled = false)
     public void testJavaScriptExecution(){
-        //driver.get(baseUrl);
-        //JS will open the url
-        //textBox.sendKeys("test");
-
         js.executeScript("window.location = 'http://letskodeit.teachable.com/pages/practice'");
-        textBox = (WebElement) js.executeScript("return document.getElementById('name');");
-        textBox.sendKeys("test");
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        js.executeScript("arguments[0].click();", checkBoxElement);
     }
 
+    @Test(enabled = true)
+    public void testJSClick2() {
+        driver.get("https://www.retailmenot.com/");
+        logIn.click();
+        System.out.println("Displayed: " + subscribe.isDisplayed());
+        System.out.println("Selected: " + subscribe.isSelected());
+
+        //with java script force to do click on the element
+        js.executeScript("arguments[0].click();", subscribe);
+    }
 
     @AfterClass
     public void tearDown() throws Exception {

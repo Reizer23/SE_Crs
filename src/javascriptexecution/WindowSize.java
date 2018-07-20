@@ -1,5 +1,5 @@
 package javascriptexecution;
-
+//21-125
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,18 +12,14 @@ import org.testng.annotations.Test;
 
 import java.util.concurrent.TimeUnit;
 
-public class JavaScriptExecution {
+public class WindowSize {
     WebDriver driver;
     String baseUrl;
     private JavascriptExecutor js;
 
-    @FindBy(css = "#name")
-    WebElement textBox;
-
     @BeforeMethod
     public void setUp() throws Exception {
         driver = new ChromeDriver();
-        PageFactory.initElements(driver, this);
         baseUrl = "http://letskodeit.teachable.com/pages/practice";
         js = (JavascriptExecutor) driver;
         driver.manage().window().maximize();
@@ -32,13 +28,12 @@ public class JavaScriptExecution {
 
     @Test
     public void testJavaScriptExecution(){
-        //driver.get(baseUrl);
-        //JS will open the url
-        //textBox.sendKeys("test");
-
         js.executeScript("window.location = 'http://letskodeit.teachable.com/pages/practice'");
-        textBox = (WebElement) js.executeScript("return document.getElementById('name');");
-        textBox.sendKeys("test");
+        long height = (Long) js.executeScript("return window.innerHeight;");
+        long width = (Long) js.executeScript("return window.innerHeight;");
+
+        System.out.println("Height is: " + height);
+        System.out.println("Width is: " + width);
     }
 
 
