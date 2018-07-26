@@ -53,4 +53,11 @@ public class WaitTypes {
             System.out.println("Element not appeared on the web page");
         }
     }
+
+    public static WebElement getWhenVisible(WebDriver driver, By locator, int timeout){
+        WebElement element = null;
+        WebDriverWait wait = new WebDriverWait(driver, timeout);
+        element = wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+        return element;
+    }
 }

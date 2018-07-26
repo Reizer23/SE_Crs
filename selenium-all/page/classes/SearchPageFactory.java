@@ -29,17 +29,17 @@ public class SearchPageFactory {
     @FindBy(css = "#flight-returning-hp-flight")
     WebElement returnDate;
 
+    public SearchPageFactory(WebDriver driver){
+        this.driver = driver;
+        PageFactory.initElements(driver, this);
+    }
+
     public void clickRoundTrip(){
         rounTrip.click();
     }
 
     public void clickMultipleDestination(){
         multipleDestination.click();
-    }
-
-    public void SearchPageFactory(WebDriver driver){
-        this.driver = driver;
-        PageFactory.initElements(driver, this);
     }
 
     public void clickFlightTab(){

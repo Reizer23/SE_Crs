@@ -9,24 +9,21 @@ import org.testng.annotations.Test;
 import java.util.concurrent.TimeUnit;
 
 public class FrameworkTestCase {
-    WebDriver driver;
-    String baseUrl;
+    private WebDriver driver;
+    private String baseUrl;
     SearchPageFactory searchPage;
 
     @BeforeClass
     public void setUp(){
         driver = new ChromeDriver();
         baseUrl = "http://expedia.com";
-
         searchPage = new SearchPageFactory(driver);
-
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-
     }
 
     @Test
-    public void test3(){
+    public void testSearchPageFactory(){
         driver.get(baseUrl);
         searchPage.clickFlightTab();
         searchPage.setOriginCity("New York");
