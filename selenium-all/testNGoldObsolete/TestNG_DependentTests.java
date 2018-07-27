@@ -1,4 +1,4 @@
-package testNG;
+package testNGoldObsolete;
 
 import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.WebDriver;
@@ -8,7 +8,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import org.testng.log4testng.Logger;
 import page.classes.SearchPage;
-import page.classes.SearchPageFactory;
 
 import java.util.concurrent.TimeUnit;
 
@@ -25,7 +24,7 @@ public class TestNG_DependentTests {
         searchPage = new SearchPage(driver);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        PropertyConfigurator.configure("log4j.properties");
+        PropertyConfigurator.configure("log4jdemo.properties");
         driver.get(baseUrl);
     }
 

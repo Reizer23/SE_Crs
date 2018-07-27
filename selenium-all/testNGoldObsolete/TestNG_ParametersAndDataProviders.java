@@ -1,12 +1,9 @@
-package testNG;
+package testNGoldObsolete;
 
 import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Parameters;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import org.testng.log4testng.Logger;
 import page.classes.SearchPage;
 
@@ -25,12 +22,18 @@ public class TestNG_ParametersAndDataProviders {
         searchPage = new SearchPage(driver);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        PropertyConfigurator.configure("log4j.properties");
+        PropertyConfigurator.configure("log4jdemo.properties");
         driver.get(baseUrl);
     }
 
-    @Parameters( { "origin", "dest", "depDate", "retDate" } )
+    @DataProvider(name = "fieldsInputs") //can have any name
+    public static Object[][] searchData(){
+        return new Object[][] {{"New York", "Chicago", "10/28/2018", "10/31/2018"},
+                                {"New York", "Boston", "12/28/2018", "12/31/2018"}};
+    }
+
     @Test
+    @Parameters({"origin", "dest", "depDate", "retDate"})
     public void searchFlights(String origin, String dest, String depDate,
                               String retDate) throws InterruptedException {
         SearchPage.navigateToFlightsTab(driver);
@@ -41,7 +44,7 @@ public class TestNG_ParametersAndDataProviders {
         SearchPage.fillReturnDateTextBox(driver, retDate);
     }
 
-    /*@Test
+    @Test(dataProvider = "fieldsInputs")
     public void searchFlightsWithMultiData(String origin, String dest, String depDate,
                                            String retDate) throws Exception{
         SearchPage.navigateToFlightsTab(driver);
@@ -52,7 +55,7 @@ public class TestNG_ParametersAndDataProviders {
         SearchPage.fillDepartureDateTextBox(driver,depDate);
         SearchPage.flightReturn.clear();
         SearchPage.fillReturnDateTextBox(driver, retDate);
-    }*/
+    }
 
     @AfterClass
     public void tearDown() throws Exception{

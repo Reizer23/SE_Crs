@@ -1,9 +1,8 @@
-package testNG;
+package testNGoldObsolete;
 
 import org.testng.annotations.*;
 
-public class TestNG_Grouping {
-
+public class TestNG_Prioritizing {
     @BeforeClass
     public void beforeClass(){
         System.out.println("This method runs before class");
@@ -14,24 +13,24 @@ public class TestNG_Grouping {
         System.out.println("This method runs before every method");
     }
 
-    @Test(groups = {"Sedan", "BMW"})
+    @Test(priority = 0)
     public void BMW3Series(){
-        System.out.println("Running Test - BMW 3 Series");
+        System.out.println("Running Test 1 - BMW 3 Series");
     }
 
-    @Test(groups = {"SUV", "BMW"})
+    @Test(priority = 1)
     public void BMWX3(){
-        System.out.println("Running Test - BMW X3");
+        System.out.println("Running Test 2 - BMW X3");
     }
 
-    @Test(groups = {"Sedan", "Audi"})
+    @Test(priority = 2, enabled = false)
     public void AudiA6(){
-        System.out.println("Running Test - Audi A6");
+        System.out.println("Running Test 3 - Audi A6");
     }
 
-    @Test(groups = {"Sedan", "Honda"})
+    @Test(priority = 3)
     public void HondaAccord(){
-        System.out.println("Running Test - Honda Accord");
+        System.out.println("Running Test 4 - Honda Accord");
     }
 
     @AfterMethod
@@ -42,5 +41,6 @@ public class TestNG_Grouping {
     @AfterClass
     public void afterClass(){
         System.out.println("This method runs after class");
+        System.out.println();
     }
 }

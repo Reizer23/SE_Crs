@@ -1,4 +1,4 @@
-package testNG;
+package testNGoldObsolete;
 
 import org.apache.log4j.PropertyConfigurator;
 import org.openqa.selenium.WebDriver;
@@ -22,7 +22,7 @@ public class TestNG_TestCase {
         searchPage = new SearchPage(driver);
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        PropertyConfigurator.configure("log4j.properties");
+        PropertyConfigurator.configure("log4jdemo.properties");
         driver.get(baseUrl);
     }
 

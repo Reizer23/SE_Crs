@@ -17,6 +17,18 @@ public class SearchPage {
     @FindBy(css = "#flight-returning-hp-flight")
     public static WebElement flightReturn;
 
+    @FindBy(css = "#flight-origin-hp-flight")
+    static WebElement flightOrigin;
+
+    @FindBy(css = "#flight-destination-hp-flight")
+    static WebElement flightDestination;
+
+    @FindBy(css = "#flight-departing-hp-flight")
+    static WebElement flightDeparting;
+
+    @FindBy(css = "#flight-returning-hp-flight")
+    static WebElement flightReturning;
+
     public SearchPage(WebDriver driver){
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -110,5 +122,13 @@ public class SearchPage {
         WebElement element = WaitTypes.getWhenVisible(driver,By.xpath("//section[@id='columnAFilter']//input[@id='leg0-morning-departure']"), 30);
         element.click();
         log.info("Clicked on Morning Time to filter the results");
+    }
+
+    /**Clear all the fields on the Search Page*/
+    public static void clearAllFields(WebDriver driver){
+        flightOrigin.clear();
+        flightDestination.clear();
+        flightDeparting.clear();
+        flightReturning.clear();
     }
 }

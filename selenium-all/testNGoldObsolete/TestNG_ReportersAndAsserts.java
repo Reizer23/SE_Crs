@@ -1,4 +1,4 @@
-package testNG;
+package testNGoldObsolete;
 
 import org.testng.Assert;
 import org.testng.Reporter;

@@ -1,0 +1,9 @@
+16:11:20.486 DEBUG LoggingDemo -Debug Message Logged
+16:11:20.502 INFO  LoggingDemo -Info Message Logged
+16:11:20.502 ERROR LoggingDemo -Error Message Logged
+16:11:20.502 FATAL LoggingDemo -Fatal Message Logged
+16:11:28.781 INFO  LoggingFile -Info Message Logged
+16:11:28.805 ERROR LoggingFile -Error Message Logged
+16:11:28.807 FATAL LoggingFile -Fatal Message Logged
+16:24:58.090 INFO  TestNG_TestCase -This message is from test method
+16:26:04.221 INFO  TestNG_TestCase - This message is from TestNG method
