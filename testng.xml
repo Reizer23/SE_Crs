@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Regression TestSuite">
+    <test name="Application Test">
+        <classes>
+            <class name="testNG.TestNG_TestClass1"></class>
+            <class name="testNG.TestNG_TestClass2"></class>
+        </classes>
+    </test>
+</suite>
+
+<!-- This is for TestSuites -->

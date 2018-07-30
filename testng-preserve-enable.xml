@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Preserve Enable TestSuite">
+    <test name="Test 1" preserve-order="true">
+        <classes>
+            <class name="testNG.TestNG_Preserve2"></class>
+            <class name="testNG.TestNG_Preserve1"></class>
+        </classes>
+    </test>
+
+    <!-- To disable or enable a test: enable="false" -->
+    <test name="Test 2" enabled="false">
+        <classes>
+            <class name="testNG.TestNG_Preserve2"></class>
+            <class name="testNG.TestNG_Preserve1"></class>
+        </classes>
+    </test>
+</suite>
+
+<!-- This is for TestSuites -->

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Regression TestSuite">
+    <test name="Application Test 1">
+        <classes>
+            <class name="regressionsuitetestng.TestNG_TestClass1"></class>
+
+        </classes>
+    </test>
+    <test name="Application Test 2">
+        <classes>
+
+            <class name="regressionsuitetestng.TestNG_TestClass2"></class>
+        </classes>
+    </test>
+</suite>
+
+<!-- This is to run TestSuites -->
