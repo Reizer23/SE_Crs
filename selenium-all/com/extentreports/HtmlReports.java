@@ -19,24 +19,24 @@ public class HtmlReports {
 
     WebDriver driver;
     ExtentHtmlReporter htmlReports;
-    ExtentReports extent;
+    ExtentReports report;
     ExtentTest test;
     String fileName = System.getProperty("user.dir")+"/test-output/HtmlTestResults.html";
 
     @BeforeTest
     public void setUp(){
         htmlReports = new ExtentHtmlReporter(fileName);
-        extent = new ExtentReports();
-        extent.attachReporter(htmlReports);
+        report = new ExtentReports();
+        report.attachReporter(htmlReports);
         htmlReports.config().setReportName("Regression Testing");
         htmlReports.config().setTestViewChartLocation(ChartLocation.TOP);
         htmlReports.config().setDocumentTitle("HtmlReportsTestResults");
-        extent.setSystemInfo("Environment", "QA-AUT");
+        report.setSystemInfo("Environment", "QA-AUT");
     }
 
     @Test(priority = 0)
     public void openBrowser(){
-        test=extent.createTest("TC_1=Open Firefox Browser using ChromeDriver");
+        test= report.createTest("TC_1=Open Firefox Browser using ChromeDriver");
         test.log(Status.INFO, "Test Case execution is started");
         driver = new ChromeDriver();
         test.log(Status.INFO, "Chrome Browser is Open");
@@ -44,21 +44,21 @@ public class HtmlReports {
 
     @Test(priority = 1)
     public void openAutUrl(){
-        test = extent.createTest("TC_2 = Open AUT url");
+        test = report.createTest("TC_2 = Open AUT url");
         driver.navigate().to("https://learn-selenium-automation-testing.blogspot.in");
         test.log(Status.PASS, "Application Under Test url is open");
     }
 
     @Test(priority = 2)
     public void verifyPageTitle() throws Exception {
-        test = extent.createTest("TC_3 = Verify proper url is open or not");
+        test = report.createTest("TC_3 = Verify proper url is open or not");
         String actualPageTitle = driver.getTitle();
         assertTrue(actualPageTitle.equals("googles"));
     }
 
     @AfterTest
     public void tearDown() {
-        extent.flush();
+        report.flush();
         driver.quit();
     }
 
@@ -71,6 +71,7 @@ public class HtmlReports {
             test.log(Status.PASS, "Test case is Passed");
         }else if(testResults.getStatus()==ITestResult.SKIP){
             test.log(Status.SKIP, testResults.getThrowable());
-        }extent.flush();
+        }
+        report.flush();
     }
 }

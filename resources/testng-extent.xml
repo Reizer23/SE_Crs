@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Extent Suite">
+    <test name="Chrome Test" enabled="false">
+        <classes>
+            <class name="extenreports.Test1"></class>
+            <class name="extenreports.Test2"></class>
+        </classes>
+    </test>
+    <test name="PageFactory Test">
+        <classes>
+            <class name="extenreports.Login"></class>
+        </classes>
+    </test>
+</suite>

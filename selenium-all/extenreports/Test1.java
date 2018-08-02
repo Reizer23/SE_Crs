@@ -1,5 +1,12 @@
 package extenreports;
 
+/**
+ * Test1
+ * Test2
+ * ExtentFactory
+ * testng-extent.xml
+ */
+
 import com.relevantcodes.extentreports.ExtentReports;
 import com.relevantcodes.extentreports.ExtentTest;
 import com.relevantcodes.extentreports.LogStatus;
@@ -21,7 +28,7 @@ import utilities.Screenshots;
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-public class SeleniumLoginTest {
+public class Test1 {
     WebDriver driver;
     String baseUrl;
     ExtentReports report;
@@ -39,14 +46,10 @@ public class SeleniumLoginTest {
     @FindBy(name = "commit")
     WebElement loginBtn;
 
-    //Siempre encuentra este objeto =/
-    @FindBy(linkText = "Category")
-    WebElement categoryLabel;
-
     @BeforeClass
     public void beforeClass(){
         baseUrl = "http://www.letskodeit.com/";
-        report = new ExtentReports(System.getProperty("user.dir") + "/test-output/logintest.html");
+        report = ExtentFactory.getInstance();
         test = report.startTest("Verify Welcome Text");
         driver = new ChromeDriver();
         PageFactory.initElements(driver,this);
@@ -63,7 +66,7 @@ public class SeleniumLoginTest {
         login.click();
         test.log(LogStatus.INFO, "Clicked on Login Link");
         email.clear();
-        email.sendKeys("test@email.com");
+        email.sendKeys("testui@email.com");
         test.log(LogStatus.INFO, "Enter email");
         pass.clear();
         pass.sendKeys("abcabc");
@@ -74,14 +77,24 @@ public class SeleniumLoginTest {
         Thread.sleep(3000);
         WebElement categoryText = null;
         try {
-            categoryText = driver.findElement(By.linkText("Category"));
+            driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+            categoryText = driver.findElement(By.xpath("//div[contains(text(),'Category')]"));
         } catch (NoSuchElementException e) {
             System.out.println(e.getMessage());
         }
 
         Assert.assertTrue(categoryText != null);
-        test.log(LogStatus.PASS, "Verified Welcome Text");
+        test.log(LogStatus.PASS, "Verified Category Text");
         System.out.println("Login Successful");
+    }
+
+    @AfterMethod
+    public void tearDown(ITestResult testResult) throws IOException {
+        if (testResult.getStatus() == ITestResult.FAILURE) {
+            String path = Screenshots.takeScreenshot(driver, testResult.getName());
+            String imagePath = test.addScreenCapture(path);
+            test.log(LogStatus.FAIL, "Verify Welcome Text Failed", imagePath);
+        }
     }
 
     @AfterClass
