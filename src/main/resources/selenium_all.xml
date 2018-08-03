@@ -12,15 +12,18 @@
     <listeners>
         <listener class-name="org.uncommons.reportng.HTMLReporter" />
         <listener class-name="org.uncommons.reportng.JUnitXMLReporter" />
-        <!--<listener class-name="utils.Screenshots" /> -->
-    </listeners>
+        <!--  <listener class-name="utilities.Screenshots" /> -->
+      </listeners>
 
-    <test name="Automation SE"
-          preserve-order="true">
-        <packages>
-            <package
-                    name="basicweb.*"/>
-        </packages>
+      <test name="Automation SE"
+            preserve-order="true">
+          <!-- <classes>
+               <class name="testNG.TestNG_Asserts"></class>
+           </classes>-->
+         <packages>
+             <package
+                     name="testngasserts.*"/>
+         </packages>
     </test>
 
 </suite>

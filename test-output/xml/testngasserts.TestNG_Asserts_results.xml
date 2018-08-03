@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Automation SE"
+           tests="3"
+           failures="0"
+           errors="0"
+           skipped="0"
+           time="0.017">
+  <properties />
+  
+  
+            <testcase name="testStrings" time="0.000" classname="testngasserts.TestNG_Asserts" />
+                <testcase name="testSum" time="0.016" classname="testngasserts.TestNG_Asserts" />
+                <testcase name="testArrays" time="0.001" classname="testngasserts.TestNG_Asserts" />
+      
+</testsuite>
