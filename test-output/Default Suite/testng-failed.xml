@@ -3,13 +3,16 @@
 <suite guice-stage="DEVELOPMENT" name="Failed suite [Default Suite]">
   <test thread-count="5" name="SE_Info(failed)">
     <classes>
-      <class name="extenreports.SeleniumLoginTest">
+      <class name="testNG.TestNG_ReportsAndLogs">
         <methods>
-          <include name="test1_validLoginTest"/>
-          <include name="beforeClass"/>
-          <include name="afterClass"/>
+          <include name="testMethod2"/>
+          <include name="testMethod3"/>
+          <include name="afterMethod"/>
+          <include name="setUp"/>
+          <include name="cleanUp"/>
+          <include name="beforeMethod"/>
         </methods>
-      </class> <!-- extenreports.SeleniumLoginTest -->
+      </class> <!-- testNG.TestNG_ReportsAndLogs -->
     </classes>
   </test> <!-- SE_Info(failed) -->
 </suite> <!-- Failed suite [Default Suite] -->
